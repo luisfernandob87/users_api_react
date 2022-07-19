@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const UsersForm = ({getUsers}) => {
+const UsersForm = ({getUsers, userSelected, deselectedUser}) => {
 
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [birthday, setBirthday] = useState("");
+
+useEffect(()=>{
+    if (userSelected !== null) {
+        console.log(userSelected);
+        setFirstName(userSelected.first_name);
+        setLastName(userSelected.last_name);
+        setEmail(userSelected.email);
+        setPassword(userSelected.password);
+        setBirthday(userSelected.birthday);
+    }
+
+},[userSelected])
+
+
+const reset = () =>{
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setBirthday("");
+}
 
 const submit = (e)=> {
     e.preventDefault();
@@ -18,9 +39,22 @@ const submit = (e)=> {
         password: password,
         birthday: birthday
     }
-    console.log(users);
-           axios.post('https://users-crud1.herokuapp.com/users/', users)
-                .then(() => getUsers());
+    if (userSelected !== null) {
+        axios.put(`https://users-crud1.herokuapp.com/users/${userSelected.id}/`, users)
+        .then(()=>{
+            getUsers();
+            reset();
+            deselectedUser();
+        })
+        
+    }else{
+        console.log(users);
+               axios.post('https://users-crud1.herokuapp.com/users/', users)
+                    .then(() => {
+                        getUsers()
+                        reset();
+                    });
+    }
  }
     return (
         <div>
