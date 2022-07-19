@@ -5,14 +5,18 @@ const UserList = ({ users, selectUser, deleteUser }) => {
 
     return (
         <ul>
-            <h2>Usuarios</h2>
+            <h2>Users</h2>
             {users.map((user)=> (
                 <li key={user.id}>
-                <h3>{user.first_name}  {user.last_name}</h3>
-                <p>{user.email}</p>
-                <p>{user.birthday}</p>
-                <button onClick={()=> deleteUser(user.id)}>delete</button>
-                <button onClick={()=> selectUser(user)}>edit</button>
+                    <div className='data'>
+                        <h3>Name: {user.first_name}  {user.last_name}</h3>
+                        <p>Email: {user.email}</p>
+                        <p>Birthday: {user.birthday}</p>
+                    </div>
+                    <div className='button'>
+                        <button onClick={()=> deleteUser(user.id)}><img src="/src/delete.svg" alt="" /></button>
+                        <button onClick={()=> selectUser(user)}><img src="/src/edit.svg" alt="" /></button>
+                    </div>
                 </li> 
             ))}     
         </ul>
