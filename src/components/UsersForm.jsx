@@ -89,7 +89,7 @@ const submit = (e)=> {
                 <input type="date" name="birthday" id="birthday" value={birthday}
                 onChange={e => setBirthday(e.target.value)}/>    
                 </div>
-                <button> <img src="/src/user.svg" alt="submit"/> </button>
+                <button> <img src="/src/img/user.svg" alt="submit"/> </button>
             </form>
         </div>
     );

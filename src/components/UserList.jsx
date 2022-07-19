@@ -14,8 +14,8 @@ const UserList = ({ users, selectUser, deleteUser }) => {
                         <p>Birthday: {user.birthday}</p>
                     </div>
                     <div className='button'>
-                        <button onClick={()=> deleteUser(user.id)}><img src="/src/delete.svg" alt="" /></button>
-                        <button onClick={()=> selectUser(user)}><img src="/src/edit.svg" alt="" /></button>
+                        <button onClick={()=> deleteUser(user.id)}><img src="/src/img/delete.svg" alt="" /></button>
+                        <button onClick={()=> selectUser(user)}><img src="/src/img/edit.svg" alt="" /></button>
                     </div>
                 </li> 
             ))}     
